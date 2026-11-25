@@ -1,0 +1,93 @@
+<!--
+title: Adctor（AIの料金所）｜株式会社Trillion Bank
+description: Adctorは、AIに引用・利用された情報に対価が届く「AIの料金所（Pay per Citation／ペイウォール）」です。研究開発・限定実証の段階で、共同実証のパートナーを募集しています。
+page: adctor
+crumb: Business|business.html;Adctor
+-->
+<section class="phero phero--navy" aria-labelledby="ph-title">
+  <div class="phero__inner">
+    {{crumbs}}
+    <p class="phero__tag">研究開発・限定実証</p>
+    <p class="phero__logo" aria-hidden="true"><img src="assets/logos/adctor-symbol-white.svg" alt="" width="224" height="236"></p>
+    <p class="phero__en" aria-hidden="true">Adctor</p>
+    <h1 class="phero__title" id="ph-title"><span class="nb">AIに引用されたら、</span><span class="nb">対価が届く。</span><span class="phero__sub">AIの料金所（Pay per Citation）</span></h1>
+    <p class="phero__lead">情報をつくる企業が、使ってよい範囲と単価を決める。合意したAI事業者だけが「料金所」を通って情報を使い、引用・利用の記録にもとづいて対価がつくり手へ還る。そんな仕組みを、共同実証で検証しています。</p>
+    <p class="phero__note">契約で合意した引用・利用が対象です。すべてのAIの引用を自動で検知・課金する仕組みではありません。</p>
+  </div>
+</section>
+
+<section class="pfm" aria-labelledby="pfm-title">
+  <div class="pfm__inner">
+    <h2 class="sec-h" id="pfm-title"><span class="sec-h__en" aria-hidden="true">Platform</span><span class="sec-h__ja">プラットフォームの構造</span></h2>
+    <p class="pfm__lead">情報を持つ「提供者」と、情報を使いたい「AI事業者」を、利用条件と記録でつなぐ。利用料は、記録にもとづいて提供者へ分配します（検証中）。</p>
+    <div class="pfm__fig" role="img" aria-label="提供者が利用条件を登録し、AI事業者が条件に合意して鍵を受け取る。AI事業者は鍵を付けて情報を利用し、Adctorが記録する。利用料はAI事業者からAdctorへ支払われ、手数料を除いて提供者へ分配される。">
+      <div class="pfm__side pfm__side--l">
+        <p class="pfm__wish">AIに使われた情報に、<br>対価がほしい</p>
+        <div class="pfm__ava pfm__ava--l"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="30" y="26" width="60" height="72" rx="8"/><path d="M42 44 H78 M42 56 H78 M42 68 H66"/><rect x="40" y="76" width="22" height="14" rx="3" class="f"/></svg></div>
+        <p class="pfm__who">情報提供者</p>
+        <p class="pfm__whos">メディア・専門データベース</p>
+      </div>
+      <div class="pfm__mid">
+        <svg class="pfm__arrows" viewBox="0 0 1000 520" aria-hidden="true">
+          <defs>
+            <marker id="pfA" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#164bff"/></marker>
+            <marker id="pfO" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#ff8a3d"/></marker>
+          </defs>
+          <path class="pf-a" style="--i:0" d="M70 150 H290" marker-end="url(#pfA)"/>
+          <path class="pf-a" style="--i:1" d="M930 150 H710" marker-end="url(#pfA)"/>
+          <path class="pf-a" style="--i:2" d="M710 230 H930" marker-end="url(#pfA)"/>
+          <path class="pf-a pf-a--o" style="--i:4" d="M930 320 H710" marker-end="url(#pfO)"/>
+          <path class="pf-a pf-a--o" style="--i:5" d="M290 320 H70" marker-end="url(#pfO)"/>
+          <path class="pf-a pf-a--loop" style="--i:3" d="M960 400 V470 H40 V400" marker-end="url(#pfA)"/>
+          <g class="pf-coin" style="--i:4"><circle r="15"/><text y="5">¥</text><animateMotion dur="2.4s" repeatCount="indefinite" path="M930 320 H710"/></g>
+          <g class="pf-coin" style="--i:5"><circle r="15"/><text y="5">¥</text><animateMotion dur="2.4s" begin="-1.2s" repeatCount="indefinite" path="M290 320 H70"/></g>
+        </svg>
+        <p class="pf-l" style="--i:0;left:18%;top:21%"><b>1</b>条件を登録</p>
+        <p class="pf-l" style="--i:1;left:82%;top:21%"><b>2</b>条件に合意</p>
+        <p class="pf-l" style="--i:2;left:82%;top:36.5%"><b>3</b>鍵（トークン）を発行</p>
+        <p class="pf-l pf-l--o" style="--i:4;left:82%;top:53%"><b>5</b>利用料を支払う</p>
+        <p class="pf-l pf-l--o" style="--i:5;left:18%;top:53%"><b>6</b>分配</p>
+        <p class="pf-tag" style="--i:5;left:18%;top:77%">利用料の<br><b>80%</b><small>設計例</small></p>
+        <p class="pf-tag pf-tag--n" style="--i:4;left:82%;top:77%">手数料<br><b>20%</b><small>設計例</small></p>
+        <p class="pf-l pf-l--loop" style="--i:3;left:50%;top:90.5%"><b>4</b>鍵を付けて、情報を利用（引用・取得）→ Adctorが記録</p>
+        <div class="pfm__core">
+          <svg viewBox="0 0 414 318" aria-hidden="true"><use href="#tb-frames" class="f"/><use href="#tb-wave" class="w"/></svg>
+          <b>Adctor</b>
+          <span>利用条件・鍵・記録・請求</span>
+          <i class="pfm__count">記録 <em>1,248</em> 件</i>
+        </div>
+      </div>
+      <div class="pfm__side pfm__side--r">
+        <p class="pfm__wish">権利のはっきりした<br>情報を使いたい</p>
+        <div class="pfm__ava pfm__ava--r"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="22" y="30" width="76" height="52" rx="8"/><path d="M38 48 L54 44 L70 54 L60 66 L44 64 Z M38 48 L60 66 M54 44 L44 64"/><path d="M50 82 H70 V92 H50 Z M42 96 H78" class="s"/></svg></div>
+        <p class="pfm__who">AI事業者</p>
+        <p class="pfm__whos">AIアシスタント・検索AIなど</p>
+      </div>
+    </div>
+    <p class="pfm__note">※ 80%／20%は未検証の設計例です。確定条件は個別の契約で合意します。契約で合意した引用・利用が対象で、すべてのAIの引用を自動で検知・課金する仕組みではありません。</p>
+  </div>
+</section>
+
+<div class="bz">
+{{section:adctor}}
+</div>
+
+<section class="ppc" aria-labelledby="ppc-title">
+  <div class="ppc__inner">
+    <h2 class="sec-h" id="ppc-title"><span class="sec-h__en" aria-hidden="true">Pay per Citation</span><span class="sec-h__ja">合意した利用だけを、請求と分配につなぐ</span></h2>
+    <ol class="flow4__list">
+      <li><span class="flow4__no">01</span><b class="flow4__t">利用条件を契約</b><span class="flow4__d">用途・期間・二次利用などを、買い手と提供者で合意</span></li>
+      <li><span class="flow4__no">02</span><b class="flow4__t">認証して利用</b><span class="flow4__d">契約にもとづき、認証された利用だけを許可</span></li>
+      <li><span class="flow4__no">03</span><b class="flow4__t">対象を記録</b><span class="flow4__d">合意した条件に当てはまる利用を記録</span></li>
+      <li><span class="flow4__no">04</span><b class="flow4__t">照合して請求・分配</b><span class="flow4__d">記録をもとに利用分を照合し、請求・分配へ</span></li>
+    </ol>
+    <ul class="ppc__kinds" aria-label="別々に契約する用途">
+      <li>データの取得</li><li>回答内の引用</li><li>モデル学習</li>
+    </ul>
+    <p class="ppc__kinds-note">用途・期間・二次利用は、別々に契約します。</p>
+  </div>
+</section>
+
+<div class="bz">
+{{block:more2}}
+</div>
