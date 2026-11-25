@@ -110,7 +110,7 @@
 /* 押したときの波紋（押した場所から広がる） */
 (() => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const SEL = '.orb, .pill, .uc__cta, .ab__links a, .price__list a, .cov__pill, .npill, .ashare__btn, .nfeat__dot, .pair__card, .crumbs a, .ucx__index a';
+  const SEL = '.pk, .orb, .pill, .uc__cta, .ab__links a, .price__list a, .cov__pill, .npill, .ashare__btn, .nfeat__dot, .pair__card, .crumbs a, .ucx__index a';
   document.querySelectorAll(SEL).forEach((el) => el.classList.add('rip-host'));
   document.addEventListener('pointerdown', (e) => {
     const host = e.target.closest && e.target.closest('.rip-host');
@@ -122,5 +122,25 @@
     s.style.cssText = `left:${e.clientX - r.left}px;top:${e.clientY - r.top}px;width:${d}px;height:${d}px`;
     host.appendChild(s);
     setTimeout(() => s.remove(), 700);
+  });
+})();
+
+/* ボタン（.pk）：右はしの丸が、カーソルの方へ少しついてくる。ボタン全体もわずかに寄る */
+(() => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.querySelectorAll('.pk').forEach((b) => {
+    const dot = b.querySelector('.pk__dot');
+    b.addEventListener('pointermove', (e) => {
+      const r = b.getBoundingClientRect();
+      const d = dot.getBoundingClientRect();
+      const dx = Math.max(-14, Math.min(14, (e.clientX - (d.left + d.width / 2)) * 0.35));
+      const dy = Math.max(-10, Math.min(10, (e.clientY - (d.top + d.height / 2)) * 0.35));
+      b.style.setProperty('--dx', `${dx.toFixed(1)}px`);
+      b.style.setProperty('--dy', `${dy.toFixed(1)}px`);
+      b.style.setProperty('--bx', `${((e.clientX - (r.left + r.width / 2)) * 0.06).toFixed(1)}px`);
+      b.style.setProperty('--by', `${((e.clientY - (r.top + r.height / 2)) * 0.12).toFixed(1)}px`);
+    });
+    b.addEventListener('pointerleave', () => { ['--dx', '--dy', '--bx', '--by'].forEach((k) => b.style.removeProperty(k)); });
   });
 })();

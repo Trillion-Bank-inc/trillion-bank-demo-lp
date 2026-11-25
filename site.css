@@ -575,3 +575,29 @@
 .orb:hover .orb__go::before, .orb:focus-visible .orb__go::before, .pair__card:hover .orb__go::before { background: var(--blue); }
 .orb--white:hover .orb__go::before, .orb--white:focus-visible .orb__go::before, .price__list a:hover .orb__go::before { background: #fff; }
 .pair__card--b:hover .orb__go::before { background: #10182b; }
+
+/* =========================================================================
+   ボタン（PKSHA の型）：白い横長のボタン＋右はしの小さな丸い矢印。
+   丸はカーソルの方へ少しついてきて、押すとボタンに波紋が広がる。大きな丸いボタンは廃止
+   ========================================================================= */
+.pk { position: relative; display: inline-flex; align-items: center; gap: 14px; min-height: 58px; padding: 0 10px 0 26px; border-radius: 999px; background: #fff; color: var(--ink); font-size: 16px; font-weight: 700; text-decoration: none; box-shadow: inset 0 0 0 1px rgba(16, 24, 43, .1), 0 14px 30px -20px rgba(16, 24, 43, .45); translate: var(--bx, 0px) var(--by, 0px); transition: translate .45s var(--gp-out), box-shadow .45s var(--gp-out); }
+.pk__en { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--blue); }
+.pk__t { white-space: nowrap; }
+.pk__dot { position: relative; z-index: 1; display: grid; place-items: center; flex: none; width: 38px; height: 38px; margin-left: 6px; border-radius: 50%; background: var(--ink); translate: var(--dx, 0px) var(--dy, 0px); transition: translate .35s var(--gp-out), scale .4s var(--gp-out), background-color .3s; }
+.pk__dot i { width: 12px; height: 12px; background: #fff; clip-path: polygon(0 42%, 58% 42%, 58% 10%, 100% 50%, 58% 90%, 58% 58%, 0 58%); }
+.pk__dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 0 1px var(--ink); opacity: 0; pointer-events: none; }
+.pk:hover, .pk:focus-visible { box-shadow: inset 0 0 0 1px rgba(22, 75, 255, .35), 0 20px 40px -22px rgba(16, 24, 43, .55); }
+.pk:hover .pk__dot, .pk:focus-visible .pk__dot { scale: 1.12; background: var(--blue); }
+.pk:hover .pk__dot::after, .pk:focus-visible .pk__dot::after { box-shadow: 0 0 0 1px var(--blue); animation: goRing 1.2s ease-out infinite; }
+.pk:hover .pk__dot i { animation: goArrow .6s var(--gp-emph); }
+.pk:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+.pk .rip { background: var(--blue); opacity: .2; }
+/* 置き場所 */
+.git__orbs { gap: 14px; }
+.git__o .pk { min-height: 64px; padding-left: 30px; font-size: 18px; }
+.phero__actions { gap: 14px; }
+.phero--navy .pk, .git .pk { box-shadow: 0 18px 40px -22px rgba(4, 10, 40, .7); }
+.band-link .pk { grid-column: 2; grid-row: 1 / span 2; }
+@media (max-width: 699px) { .band-link .pk { grid-column: 1; grid-row: auto; justify-self: start; } }
+@media (max-width: 899px) { .git__orbs { flex-direction: column; align-items: stretch; } .git__o .pk { width: 100%; justify-content: space-between; } }
+@media (prefers-reduced-motion: reduce) { .pk, .pk__dot { translate: none !important; } .pk__dot::after, .pk__dot i { animation: none !important; } }
