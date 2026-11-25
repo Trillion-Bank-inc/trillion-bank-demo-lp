@@ -58,3 +58,51 @@
   wire('.has-dialog .lead__card', '.lead__open');
   wire('.uc__card', '.uc__cta');
 })();
+
+/* News：新着の切り替え・年と分類の絞り込み・リンクのコピー */
+(() => {
+  const feat = document.querySelector('.nfeat');
+  if (feat) {
+    const slides = Array.from(feat.querySelectorAll('.nfeat__slide'));
+    const dots = Array.from(feat.querySelectorAll('.nfeat__dot'));
+    let cur = 0; let t = 0;
+    const go = (i) => {
+      cur = (i + slides.length) % slides.length;
+      slides.forEach((s, k) => { s.classList.toggle('is-on', k === cur); s.setAttribute('aria-hidden', String(k !== cur)); });
+      dots.forEach((d, k) => d.classList.toggle('is-on', k === cur));
+    };
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const start = () => { if (!reduce && slides.length > 1 && !t) t = setInterval(() => go(cur + 1), 5000); };
+    const stop = () => { clearInterval(t); t = 0; };
+    dots.forEach((d, k) => d.addEventListener('click', () => { stop(); go(k); }));
+    feat.addEventListener('pointerenter', stop);
+    feat.addEventListener('pointerleave', start);
+    feat.addEventListener('focusin', stop);
+    go(0); start();
+  }
+  const filter = document.querySelector('.nfilter');
+  if (filter) {
+    const cards = Array.from(document.querySelectorAll('.nlist .nlc'));
+    const status = filter.querySelector('.nfilter__status');
+    const state = { year: 'all', cat: 'all' };
+    const apply = () => {
+      let n = 0;
+      cards.forEach((c) => {
+        const show = (state.year === 'all' || c.dataset.year === state.year) && (state.cat === 'all' || c.dataset.cat === state.cat);
+        c.hidden = !show; if (show) n += 1;
+      });
+      status.textContent = n ? `${n}件` : '該当する記事はありません';
+    };
+    filter.querySelectorAll('.npill').forEach((b) => b.addEventListener('click', () => {
+      const key = b.dataset.year !== undefined ? 'year' : 'cat';
+      state[key] = b.dataset[key];
+      filter.querySelectorAll(`.npill[data-${key}]`).forEach((x) => { const on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', String(on)); });
+      apply();
+    }));
+  }
+  document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
+    const label = b.querySelector('span');
+    try { await navigator.clipboard.writeText(b.dataset.copy); label.textContent = 'コピーしました'; } catch (e) { label.textContent = b.dataset.copy; }
+    setTimeout(() => { label.textContent = 'リンクをコピー'; }, 2200);
+  }));
+})();
