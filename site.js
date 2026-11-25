@@ -106,3 +106,21 @@
     setTimeout(() => { label.textContent = 'リンクをコピー'; }, 2200);
   }));
 })();
+
+/* 押したときの波紋（押した場所から広がる） */
+(() => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const SEL = '.orb, .pill, .uc__cta, .ab__links a, .price__list a, .cov__pill, .npill, .ashare__btn, .nfeat__dot, .pair__card, .crumbs a, .ucx__index a';
+  document.querySelectorAll(SEL).forEach((el) => el.classList.add('rip-host'));
+  document.addEventListener('pointerdown', (e) => {
+    const host = e.target.closest && e.target.closest('.rip-host');
+    if (!host) return;
+    const r = host.getBoundingClientRect();
+    const d = Math.hypot(Math.max(e.clientX - r.left, r.right - e.clientX), Math.max(e.clientY - r.top, r.bottom - e.clientY)) * 2;
+    const s = document.createElement('span');
+    s.className = 'rip';
+    s.style.cssText = `left:${e.clientX - r.left}px;top:${e.clientY - r.top}px;width:${d}px;height:${d}px`;
+    host.appendChild(s);
+    setTimeout(() => s.remove(), 700);
+  });
+})();

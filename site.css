@@ -546,3 +546,32 @@
 .ashare__btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px #d9dde4; color: var(--ink); font: 700 14px var(--font); text-decoration: none; cursor: pointer; transition: background-color .3s, color .3s; }
 .ashare__btn:hover { background: var(--blue); color: #fff; box-shadow: none; }
 @media (prefers-reduced-motion: reduce) { .nfeat__slide { transition: none; } }
+
+/* =========================================================================
+   ボタン：丸い矢印（四角い矢印をやめる）。カーソルを当てると丸が大きくなり、輪が広がる。
+   押すと、押した場所から波紋が広がり、ボタンが少し沈む
+   ========================================================================= */
+.orb__go { position: relative; display: grid; place-items: center; width: 44px; height: 44px; margin-top: 12px; border-radius: 50%; background: #fff; clip-path: none; transition: scale .45s var(--gp-out), background-color .3s; }
+.orb__go::before { content: ""; position: relative; inset: auto; margin: 0; width: 13px; height: 13px; background: var(--blue); clip-path: polygon(0 42%, 58% 42%, 58% 10%, 100% 50%, 58% 90%, 58% 58%, 0 58%); transition: translate .45s var(--gp-out), background-color .3s; }
+.orb__go::after { content: ""; position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 0 1.5px currentColor; opacity: 0; pointer-events: none; }
+.orb--white .orb__go, .price__list .orb__go { background: var(--blue); color: var(--blue); }
+.orb--white .orb__go::before, .price__list .orb__go::before { background: #fff; }
+.orb:hover .orb__go, .orb:focus-visible .orb__go, .pair__card:hover .orb__go, .price__list a:hover .orb__go { translate: 0 0; scale: 1.14; background: #fff; }
+.orb--white:hover .orb__go, .orb--white:focus-visible .orb__go, .price__list a:hover .orb__go { background: var(--blue); }
+.orb:hover .orb__go::before, .pair__card:hover .orb__go::before, .price__list a:hover .orb__go::before { animation: goArrow .6s var(--gp-emph); }
+.orb:hover .orb__go::after, .orb:focus-visible .orb__go::after, .pair__card:hover .orb__go::after, .price__list a:hover .orb__go::after { animation: goRing 1.2s ease-out infinite; }
+@keyframes goArrow { 0% { translate: 0 0; } 45% { translate: 14px 0; opacity: 0; } 46% { translate: -14px 0; opacity: 0; } 100% { translate: 0 0; opacity: 1; } }
+@keyframes goRing { 0% { scale: 1; opacity: .7; } 100% { scale: 1.9; opacity: 0; } }
+.pair__card .orb__go { width: 56px; height: 56px; }
+.orb--sm .orb__go { width: 38px; height: 38px; margin-top: 8px; }
+
+/* 押したときの波紋と沈み込み */
+.rip-host { position: relative; overflow: hidden; isolation: isolate; }
+.rip { position: absolute; z-index: 0; border-radius: 50%; background: currentColor; opacity: .22; pointer-events: none; translate: -50% -50%; scale: 0; animation: rip .65s cubic-bezier(.22, 1, .36, 1) forwards; }
+@keyframes rip { to { scale: 1; opacity: 0; } }
+.rip-host:active { scale: .97; }
+.rip-host { transition: scale .25s var(--gp-out); }
+@media (prefers-reduced-motion: reduce) { .rip { display: none; } .orb__go::before, .orb__go::after { animation: none !important; } .rip-host:active { scale: 1; } }
+.orb:hover .orb__go::before, .orb:focus-visible .orb__go::before, .pair__card:hover .orb__go::before { background: var(--blue); }
+.orb--white:hover .orb__go::before, .orb--white:focus-visible .orb__go::before, .price__list a:hover .orb__go::before { background: #fff; }
+.pair__card--b:hover .orb__go::before { background: #10182b; }
